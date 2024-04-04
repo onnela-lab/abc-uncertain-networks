@@ -55,15 +55,22 @@ diagnose_ordered_nbin.py
 POSTERIOR PREDICTIVE CHECKS
 
 1) simple_generate.py
-- Identical to the generation of the initial training/validation samples, but run in "storing" mode.
-- This will store parameters and networks that lead to simulated epidemics that fulfill a precalculated ABC threshold.
+  - Identical to the generation of the initial training/validation samples, but run in "storing" mode.
+  - This will store parameters and networks that lead to simulated epidemics that fulfill a precalculated ABC threshold.
 
 2) unify_pp.py
-- Unifies the posterior draws into one file.
+  - Unifies the posterior draws into one file.
 
 2) pp_check.py
-- Using the posterior predictive samples generated from the parameters and networks stored previously, simulate new epidemics.
-- These epidemics are stored to be used for our posterior predictive diagnostics.
+  - Using the posterior predictive samples generated from the parameters and networks stored previously, simulate new epidemics.
+  - These epidemics are stored to be used for our posterior predictive diagnostics.
+
+PLOTS
+
+1) i_diff_pp_check.py
+  - Analyzes the posterior predictive check.
+2) create_plots.py
+  - Creates the necessary plots seen in the paper.
 
 
 
