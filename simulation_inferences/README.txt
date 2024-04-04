@@ -1,6 +1,7 @@
 Code for simulation study.
 Due to large volume of simulations required for MDN training and rejection ABC, it is recommended to run simulations via a parallelized framework.
 Code here employs the SLURM job scheduler, and shell scripts reflect that framework.
+ABC results are included, so plots can be directly generated.
 
 MAIN WORKFLOW
 1) run_initial_epidemic.py
@@ -15,6 +16,8 @@ MAIN WORKFLOW
   - Auxiliary file nn_utils.py includes additional code.
 4) abc_framework.py
   - Runs rejection ABC by using the summary statistics from the MDN.
+5) create_plots.py
+  - Creates plots seen in paper.
 
 COVERAGE PROPERTY EVALUATION
 1) prior_calculate_coverages.py
