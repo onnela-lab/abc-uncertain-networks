@@ -48,6 +48,10 @@ single_network_generation.py
 network_troubleshoot.py
   - Unifies these chains.
 
+2) Discrepancy Calculations
+diagnose_ordered_nbin.py
+  - Following the work by Young, 2020, generate discrepancy measures that evaluate the goodness of fit for our network model.
+
 POSTERIOR PREDICTIVE CHECKS
 
 1) simple_generate.py
