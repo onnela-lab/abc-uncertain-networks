@@ -1,1 +1,1 @@
-ABC and posterior predictive data.
+ABC and posterior predictive data for dolphin dataset.
