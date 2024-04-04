@@ -102,7 +102,7 @@ accepted_times = []
 	
 print("Beginning rejection ABC.")	
 
-base_directory = "/n/holyscratch01/onnela_lab/maw44494/base_directory/"
+base_directory = "/n/base_directory/"
 location = base_directory + "training/training_unified_output.npy"
 fh = open(location, "rb")
 training_features = compressor(th.as_tensor(np.load(fh), dtype = th.float))
