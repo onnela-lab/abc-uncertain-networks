@@ -23,7 +23,7 @@ data_file.close()
 num_nodes = len(dolphin_dict["node_keys"])
 
 # Prior parameters.
-prior_param = [0,0.50,0,0.01,0,0.002,0,0.0004,0.2,5,10,160]
+prior_param = [0,1,0,0.01,0,0.005,0,0.001,0.2,5,10,160]
 prior_dist = "uniform" # Distribution family for our rate parameters beta and gamma.
 delta = 1
 

@@ -34,19 +34,19 @@ def single_plot(axis, letter, hist_data, color, alpha, bounds, x_label, x_label_
     axis.set_xlim(bounds[0], bounds[1])
     axis.set_yticks([])
     if x_label_position == "top":
-        axis.xaxis.set_label_position('top') 
+        axis.xaxis.set_label_position('top')
         axis.xaxis.tick_top()
     axis.set_xlabel(x_label)
     axis.set_xticks(ticks)
-    axis.set_xticklabels([str(ticks[0]), str(ticks[1])]) 
+    axis.set_xticklabels([str(ticks[0]), str(ticks[1])])
     caption_ypos = axis.get_ylim()[0] + 0.8 * (axis.get_ylim()[1] - axis.get_ylim()[0])
     caption_xpos = bounds[0] + 0.78*(bounds[1] - bounds[0])
     axis.text(caption_xpos, caption_ypos, "(" + letter +")", size = 14)
-    
-single_plot(ax[0,0], "a", abc_thetas[:,0], "dodgerblue", 0.3, [0,0.5], r"$\beta_c$", "top", [0,0.3])
-single_plot(ax[0,1], "b", abc_thetas[:,1], "green", 0.3, [0,0.005], r"$\beta_j$", "top", [0,0.003])
+
+single_plot(ax[0,0], "a", abc_thetas[:,0], "dodgerblue", 0.3, [0,1], r"$\beta_c$", "top", [0,0.6])
+single_plot(ax[0,1], "b", abc_thetas[:,1], "green", 0.3, [0,0.01], r"$\beta_j$", "top", [0,0.006])
 single_plot(ax[0,2], "c", abc_thetas[:,2], "red", 0.3, [0,0.001], r"$\beta_a$", "top", [0,0.0006])
-single_plot(ax[1,0], "d", abc_thetas[:,3], "grey", 0.5, [0,0.0005], r"$\epsilon$", "bottom", [0,0.0003])
+single_plot(ax[1,0], "d", abc_thetas[:,3], "grey", 0.5, [0,0.001], r"$\epsilon$", "bottom", [0,0.0006])
 single_plot(ax[1,1], "e", abc_thetas[:,4], "violet", 0.5, [0,3], r"$\gamma_a$", "bottom", [0,2])
 single_plot(ax[1,2], "f", abc_thetas[:,5], "orange", 0.5, [0,120], r"$\gamma_b$", "bottom", [0,80])
 
@@ -122,8 +122,8 @@ for i in range(reps):
         continue
     i_diff_means.append(np.mean(i_diffs))
     all_i_diffs.extend(i_diffs)
-    
-    
+
+
 """
 Recovery period pp-checks
 Note that this opens a gaps.pkl and a first_times.pkl; these are generated via i_diff_pp_check_with_fill.py, which generates these items.
@@ -137,8 +137,8 @@ ax3 = plt.subplot(gs[1,3:6])
 fig.subplots_adjust(hspace=0.1, bottom=0.05, wspace = 0.05)
 fig.set_size_inches(9,7)
 
-ax1.hist(i_diff_means, alpha = 0.5, color = "dodgerblue", bins = 35, density = True)
-ax1.set_xlim(0,70)
+ax1.hist(i_diff_means, alpha = 0.5, color = "dodgerblue", bins = 20, density = True)
+ax1.set_xlim(0,75)
 ax1.axvline(19.6, color = "purple", label = "Powell, 2020")
 ax1.axvline(mean_true_diffs, color = "blue", label = "Data used in ABC")
 ax1.legend()
@@ -250,14 +250,14 @@ patches = []
 for i in range(len(intervals)):
     patches.append(mpatches.Patch(color = "grey", alpha = alphas[len(intervals)-1-i], label = str(intervals[len(intervals)-1-i]) + "% PI"))
 ax3.legend(handles = patches)
-    
+
 plt.savefig(base_file + "/dolphin_pp_checks.pdf", bbox_inches='tight')
 
 """
-Check on network 
+Check on network
 """
 location = "C:/dolphin_analysis/finished_dolphin_data/"
-fig = plt.figure(figsize=(8, 7)) 
+fig = plt.figure(figsize=(8, 7))
 gs = fig.add_gridspec(4,2,width_ratios=[1,1.4])
 ax0 = plt.subplot(gs[:,0])
 ax1 = plt.subplot(gs[0,1])
@@ -311,7 +311,7 @@ def plot_chains(axis, letter, name, num_chains, chain_length, ylim, yticks):
     for i in range(num_chains):
         rand_sample = random.choices(x,k=500)
         axis.scatter(x[rand_sample],chain[i,rand_sample], alpha = 0.4, s = 0.9, color = colors[int(i%len(colors))])
-        
+
     caption_ypos = axis.get_ylim()[0] + 0.70 * (axis.get_ylim()[1] - axis.get_ylim()[0])
     caption_xpos = 0.06*(chain_length)
     axis.text(caption_xpos, caption_ypos, letter, size = 16)
@@ -324,16 +324,16 @@ plot_chains(ax2, "(c)", "n_0_1", 10,1000, [0, 1.2], [0,0.9])
 plot_chains(ax3, "(d)", "p_t_0", 10,1000, [0,0.45], [0,0.35])
 plot_chains(ax4, "(e)", "rho_t_0", 10,1000, [0,0.007], [0,0.005])
 ax1.set_ylabel(r"$n_0$", rotation = 270, size = 16)
-ax1.yaxis.set_label_position('right') 
+ax1.yaxis.set_label_position('right')
 ax1.yaxis.labelpad = -20
 ax2.set_ylabel(r"$n_1$", rotation = 270, size = 16)
-ax2.yaxis.set_label_position('right') 
+ax2.yaxis.set_label_position('right')
 ax2.yaxis.labelpad = -5
 ax3.set_ylabel(r"$p_1$", rotation = 270, size = 16)
-ax3.yaxis.set_label_position('right') 
+ax3.yaxis.set_label_position('right')
 ax3.yaxis.labelpad = -5
 ax4.set_ylabel(r"$\rho_1$", rotation = 270, size = 16)
-ax4.yaxis.set_label_position('right') 
+ax4.yaxis.set_label_position('right')
 ax4.yaxis.labelpad = -20
 ax4.set_xticklabels(["0","0.005"])
 plt.savefig(base_file + "/dolphin_network_diagnostics.pdf", bbox_inches='tight')
@@ -359,8 +359,8 @@ def plot_chains_no_letter(axis, name, num_chains, chain_length, ylim, yticks):
     for i in range(num_chains):
         rand_sample = random.choices(x,k=200) # Thin the sample a bit for plotting, or its hard to see what's going on.
         axis.scatter(x[rand_sample],chain[i,rand_sample], alpha = 0.4, s = 0.9, color = colors[int(i%len(colors))])
-    
-   
+
+
 names = ["n_0", "n_1", "p_t", "rho_t"]
 ax_dict = {"n_0": [[0.01,0.04], [0.01,0.03]], "n_1":[[0,1.2], [0,0.9]], "p_t": [[0,0.6],[0, 0.45]], "rho_t": [[0,0.08],[0,0.06]]}
 fig,ax = plt.subplots()
@@ -386,7 +386,7 @@ for i in range(len(names)):
 for t in range(5):
     curr_axis = plt.subplot(gs[3,t])
     curr_axis.set_xticks([0,800])
-    
+
 bottom_axis= plt.subplot(gs[3,2])
 bottom_axis.set_xlabel("Iterations", size = 14)
 
@@ -395,16 +395,16 @@ ra1 = plt.subplot(gs[1,4])
 ra2 = plt.subplot(gs[2,4])
 ra3 = plt.subplot(gs[3,4])
 ra0.set_ylabel(r"$n_0$", rotation = 270, size = 10)
-ra0.yaxis.set_label_position('right') 
+ra0.yaxis.set_label_position('right')
 ra0.yaxis.labelpad = -7
 ra1.set_ylabel(r"$n_1$", rotation = 270, size = 10)
-ra1.yaxis.set_label_position('right') 
+ra1.yaxis.set_label_position('right')
 ra1.yaxis.labelpad = -7
 ra2.set_ylabel(r"$p$", rotation = 270, size = 10)
-ra2.yaxis.set_label_position('right') 
+ra2.yaxis.set_label_position('right')
 ra2.yaxis.labelpad = -7
 ra3.set_ylabel(r"$\rho$", rotation = 270, size = 10)
-ra3.yaxis.set_label_position('right') 
+ra3.yaxis.set_label_position('right')
 ra3.yaxis.labelpad = -7
 
 ax0_t = plt.subplot(gs[0,0])
